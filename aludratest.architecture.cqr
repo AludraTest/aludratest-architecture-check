@@ -1,0 +1,5 @@
+#!org.conqat.engine.blocklib.architecture.JavaArchitectureAnalysis
+input.dir=.
+exclude-dependency.pattern=java.*|org.w3c.*
+architecture.file=aludratest.architecture
+output.dir=target/conqat

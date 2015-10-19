@@ -1,0 +1,285 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>org.aludratest</groupId>
+	<artifactId>aludratest-architecture-check</artifactId>
+	<version>3.1.0-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>AludraTest Architecture Check</name>
+	<description>
+		Provides component definitions and architecture assessment of all AludraTest projects
+	</description>
+	<url>http://www.aludratest.org/</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<helper.plugin.version>1.0.1</helper.plugin.version>
+	</properties>
+
+	<licenses>
+		<license>
+			<name>Apache License 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0</url>
+		</license>
+	</licenses>
+
+	<organization>
+		<name>aludratest.org</name>
+		<url>http://www.aludratest.org/</url>
+	</organization>
+
+	<developers>
+		<developer>
+			<name>Volker Bergmann</name>
+			<id>vbergmann</id>
+			<organization>Volker Bergmann IT Consulting</organization>
+			<organizationUrl>http://www.bergmann-it.de/</organizationUrl>
+			<timezone>Europe/Berlin</timezone>
+			<roles>
+				<role>architect</role>
+				<role>developer</role>
+				<role>administrator</role>
+			</roles>
+		</developer>
+
+		<developer>
+			<name>Florian Albrecht</name>
+			<id>falbrech-hsdg</id>
+			<organization>Hamburg Sud</organization>
+			<organizationUrl>http://www.hamburgsud.com/</organizationUrl>
+			<timezone>Europe/Berlin</timezone>
+			<roles>
+				<role>architect</role>
+				<role>developer</role>
+				<role>administrator</role>
+			</roles>
+		</developer>
+	</developers>
+
+	<dependencies>
+
+		<!-- CORE -->
+		<dependency>
+			<groupId>org.aludratest</groupId>
+			<artifactId>aludratest</artifactId>
+			<version>3.1.0-SNAPSHOT</version>
+		</dependency>
+		
+		<!--  EXTENSIONS -->
+		<dependency>
+			<groupId>org.aludratest</groupId>
+			<artifactId>aludratest-testing-harness</artifactId>
+			<version>3.1.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.aludratest</groupId>
+			<artifactId>aludratest-db</artifactId>
+			<version>0.2.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.aludratest</groupId>
+			<artifactId>aludratest-hpalm-connector</artifactId>
+			<version>1.1.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.aludratest</groupId>
+			<artifactId>cloud-manager-api</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.aludratest</groupId>
+			<artifactId>cloud-manager-impl</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+		
+		<!-- MAVEN PLUGINS -->
+		<dependency>
+			<groupId>org.aludratest.maven</groupId>
+			<artifactId>aludratest-surefire-provider</artifactId>
+			<version>3.1.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.aludratest.maven</groupId>
+			<artifactId>aludratest-helper-maven-plugin</artifactId>
+			<version>1.0.3-SNAPSHOT</version>
+		</dependency>
+		
+		<!-- ECLIPSE PLUGINS -->
+		<dependency>
+			<groupId>org.aludratest.eclipse</groupId>
+			<artifactId>org.aludratest.eclipse.vde</artifactId>
+			<version>0.6.1.qualifier</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+
+		<plugins>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>2.10</version>
+				<executions>
+					<execution>
+						<id>src-dependencies</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>unpack-dependencies</goal>
+						</goals>
+						<configuration>
+							<classifier>sources</classifier>
+							<failOnMissingClassifierArtifact>false</failOnMissingClassifierArtifact>
+							<includes>org/aludratest/**/*.java</includes>
+							<excludes>org/aludratest/**/*Test.java</excludes>
+							<outputDirectory>target/extracted/java</outputDirectory>
+						</configuration>
+					</execution>
+					<execution>
+						<id>class-dependencies</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>unpack-dependencies</goal>
+						</goals>
+						<configuration>
+							<includes>org/aludratest/**/*.class</includes>
+							<outputDirectory>target/extracted-classes</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<!-- http://maven.apache.org/plugins/maven-eclipse-plugin/examples/attach-library-sources.html -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>2.9</version>
+				<configuration>
+					<useProjectReferences>false</useProjectReferences>
+					<downloadSources>true</downloadSources>
+					<downloadJavadocs>true</downloadJavadocs>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<version>3.4</version>
+				<dependencies>
+					<dependency>
+						<groupId>org.aludratest.maven</groupId>
+						<artifactId>aludratest-helper-maven-plugin</artifactId>
+						<version>${helper.plugin.version}</version>
+					</dependency>
+				</dependencies>
+				<configuration>
+					<!-- never deploy, as GitHub site-deploy does it. -->
+					<skipDeploy>true</skipDeploy>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<!-- fixes a bug with 2.3 and 2.4 (commits were not pushed) -->
+				<version>2.5.1</version>
+			</plugin>
+
+		</plugins>
+
+		<pluginManagement>
+			<plugins>
+				<!--This plugin's configuration is used to store Eclipse m2e settings 
+					only. It has no influence on the Maven build itself. -->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											org.apache.maven.plugins
+										</groupId>
+										<artifactId>
+											maven-dependency-plugin
+										</artifactId>
+										<versionRange>
+											[2.9,)
+										</versionRange>
+										<goals>
+											<goal>unpack</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											org.codehaus.plexus
+										</groupId>
+										<artifactId>
+											plexus-component-metadata
+										</artifactId>
+										<versionRange>
+											[1.6,)
+										</versionRange>
+										<goals>
+											<goal>
+												generate-metadata
+											</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>jdepend-maven-plugin</artifactId>
+				<version>2.0</version>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<version>2.8</version>
+				<configuration>
+					<dependencyDetailsEnabled>false</dependencyDetailsEnabled>
+				</configuration>
+			</plugin>
+		</plugins>
+
+	</reporting>
+
+	<issueManagement>
+		<url>https://github.com/AludraTest/aludratest/issues</url>
+		<system>GitHub Issues</system>
+	</issueManagement>
+
+</project>
