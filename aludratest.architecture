@@ -345,19 +345,28 @@
    <allow source="pmd rule checks" target="gui service interface"/>
    <allow source="pmd rule checks" target="web gui service interface"/>
    <allow source="testcase implementation" target="plexus"/>
+   
+   <allow source="aludratest testing harness" target="log4testing"/>
+   <allow source="aludratest testing harness" target="config implementation"/>
+   
    <allow source="database service implementation" target="database service interface"/>
+
    <allow source="vde internal" target="vde model"/>
    <allow source="vde internal" target="testcase implementation"/>
    <allow source="vde internal" target="osgi"/>
    <allow source="vde internal" target="eclipse"/>
+
    <allow source="cloud manager impl" target="cloud manager api"/>
    <allow source="cloud manager impl" target="plexus"/>
+
    <allow source="aludratest hp alm connector" target="plexus"/>
    <allow source="aludratest hp alm connector" target="applications"/>
    <allow source="aludratest hp alm connector" target="engine"/>
+
    <allow source="aludratest surefire provider" target="maven"/>
    <allow source="aludratest surefire provider" target="applications"/>
    <allow source="aludratest surefire provider" target="engine"/>
+
    <allow source="aludratest helper maven plugin" target="maven"/>
    <allow source="aludratest helper maven plugin" target="eclipse"/>
    <allow source="aludratest helper maven plugin" target="qdox"/>
