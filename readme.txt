@@ -19,10 +19,15 @@ Installation:
 Performing the architecture assessment
 =======================================
 1. Verify the correctness of the version numbers of all AludraTest dependencies in the pom.xml file
-2. Open a console
-3. cd to the project directory
-4. On the console, invoke 
-	mvn clean generate-resources
+2. Make sure the source jars of the dependent projects are available in the most up-to-date version 
+3. Open a console
+4. cd to the project directory
 5. On the console, invoke 
-	conqat -f aludratest.architecture.cqr
-6. View the architecture assessment report in target/conqat/index.html
+		mvn clean generate-resources
+6. On the console, invoke 
+		conqat -f aludratest.architecture.cqr
+   on a Windows system or
+		conqat.sh -f aludratest.architecture.cqr
+   on a Unix or Mac system
+   
+7. View the architecture assessment report in target/conqat/index.html

@@ -69,13 +69,33 @@
 		<!--  EXTENSIONS -->
 		<dependency>
 			<groupId>org.aludratest</groupId>
+			<artifactId>log4testing</artifactId>
+			<version>1.0.2-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.aludratest</groupId>
 			<artifactId>aludratest-testing-harness</artifactId>
+			<version>3.1.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.aludratest</groupId>
+			<artifactId>aludratest-selenium</artifactId>
 			<version>3.1.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.aludratest</groupId>
 			<artifactId>aludratest-db</artifactId>
 			<version>0.2.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.aludratest</groupId>
+			<artifactId>aludratest-xml</artifactId>
+			<version>3.1.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.aludratest</groupId>
+			<artifactId>aludratest-jms</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.aludratest</groupId>
@@ -109,7 +129,7 @@
 		<dependency>
 			<groupId>org.aludratest.eclipse</groupId>
 			<artifactId>org.aludratest.eclipse.vde</artifactId>
-			<version>0.6.1.qualifier</version>
+			<version>0.6.4.qualifier</version>
 		</dependency>
 	</dependencies>
 
